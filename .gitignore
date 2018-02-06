@@ -35,3 +35,6 @@ sysinfo.txt
 *.unitypackage
 Assets/ShaderForge
 Assets/ShaderForge.meta
+
+#k014
+ProjectSettings/
