@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class LobbyPlayer : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {

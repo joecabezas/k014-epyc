@@ -8,7 +8,7 @@ using System;
 public class EventManager : MonoBehaviour
 {
 
-    private Dictionary<string, GenericUnityEvent> eventDictionary;
+    private Dictionary<object, GenericUnityEvent> eventDictionary;
 
     private static EventManager eventManager;
 
@@ -38,11 +38,11 @@ public class EventManager : MonoBehaviour
     {
         if (eventDictionary == null)
         {
-            eventDictionary = new Dictionary<string, GenericUnityEvent>();
+            eventDictionary = new Dictionary<object, GenericUnityEvent>();
         }
     }
 
-    public static void StartListening(string eventName, UnityAction<object> listener)
+    public static void StartListening(object eventName, UnityAction<object> listener)
     {
         GenericUnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -57,7 +57,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void StopListening(string eventName, UnityAction<object> listener)
+    public static void StopListening(object eventName, UnityAction<object> listener)
     {
         if (eventManager == null) return;
         GenericUnityEvent thisEvent = null;
@@ -67,12 +67,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void TriggerEvent(string eventName)
+    public static void TriggerEvent(object eventName)
     {
         TriggerEvent(eventName, null);
     }
 
-    public static void TriggerEvent(string eventName, object context)
+    public static void TriggerEvent(object eventName, object context)
     {
         GenericUnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
